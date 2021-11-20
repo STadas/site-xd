@@ -24,11 +24,9 @@ jobs:
 
       - name: Clean up
         run: |
-          shopt -s extglob dotglob
-          rm -- !("dist" | "CNAME")
+          shopt -s extglob
+          rm -r !(dist|CNAME)
+          shopt -s dotglob
+          mv dist/*/* ./
+          rm -r dist
           shopt -u dotglob
-          # mv dist/* ./
-          # rmdir dist
-
-      - name: ls test
-        run: ls .
