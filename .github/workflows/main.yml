@@ -16,7 +16,7 @@ jobs:
           ref: 'build'
       
       - name: Clone repo
-        run: git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ env.GITHUB_REPOSITORY }}.git /tmp/repo
+        run: git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git /tmp/repo
 
       - name: Make new file
         run: |
