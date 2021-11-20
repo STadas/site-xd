@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout build branch
         uses: actions/checkout@v2
         with:
           ref: 'build'
-
-      - name: test
-        run: git checkout
+      
+      - name: Test make new file
+        run: touch test
