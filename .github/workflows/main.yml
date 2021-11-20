@@ -20,5 +20,5 @@ jobs:
           echo "xd" > test
           cat test
           git add .
-          git commit -c "testxd"
+          git commit -m "testxd"
           git push -f
