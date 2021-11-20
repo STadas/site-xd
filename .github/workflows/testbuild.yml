@@ -1,0 +1,35 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git $RUNNER_TEMP/repo
+          cd $RUNNER_TEMP/repo
+
+      - name: Fetch build branch
+        run: |
+          git fetch -u origin build:build
+          git checkout build
+
+      - name: Build Angular app
+        run: |
+          npm install
+          npm run-script build
+
+      - name: Clean up
+        run: |
+          shopt -s extglob dotglob
+          rm -r !("dist" | "CNAME")
+          shopt -u dotglob
+          mv dist/*/* ./
+          rmdir dist
