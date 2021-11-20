@@ -15,17 +15,20 @@ jobs:
         with:
           ref: 'build'
       
-      - name: Clone repo
-        run: git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git /tmp/repo
+      - name: Clone repo and get build branch
+        run: |
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git /tmp/repo
+          cd /tmp/repo
+          git fetch -u origin build:build
+          git checkout build
 
       - name: Make new file
         run: |
-          cd /tmp/repo
           echo "xd" > test
           cat test
 
       - name: Push
         run: |
           git add .
-          git commit -m "testxd"
+          git commit -m "build test" --author="$GITHUB_ACTOR@users.noreply.github.com"
           git push -f
