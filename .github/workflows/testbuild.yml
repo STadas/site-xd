@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Build Angular app
         run: |
+          ls
           npm install
           npm run-script build
 
@@ -20,4 +21,3 @@ jobs:
           shopt -u dotglob
           mv dist/*/* ./
           rmdir dist
-          ls
