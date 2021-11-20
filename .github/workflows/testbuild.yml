@@ -13,8 +13,9 @@ jobs:
 
       - name: Fetch build branch
         run: |
-          git fetch -u origin build:build
+          cd ${{ github.workspace }}
           git checkout build
+          git reset --hard ${{ github.sha }}
 
       - name: Build Angular app
         run: |
