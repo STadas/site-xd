@@ -23,7 +23,7 @@ jobs:
       - name: Build Angular app
         run: |
           npm install
-          ng build
+          npm run-script build
 
       - name: Clean directory for Github Pages
         run: |
