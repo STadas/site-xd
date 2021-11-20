@@ -14,6 +14,7 @@ jobs:
       - name: Fetch build branch
         run: |
           cd ${{ github.workspace }}
+          git fetch build:build
           git checkout build
           git reset --hard ${{ github.sha }}
 
