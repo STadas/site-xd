@@ -30,6 +30,7 @@ jobs:
           mkdir tmp
           mv ./* tmp/
           mv tmp/dist/site-xd/* ./
+          mv tmp/CNAME ./
           rm -rf tmp/
 
       - name: Push
