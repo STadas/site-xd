@@ -27,5 +27,6 @@ jobs:
           shopt -s extglob dotglob
           rm -r !("dist" | "CNAME")
           shopt -u dotglob
-          mv dist/*/* ./
+          mv dist/* ./
           rmdir dist
+          ls
