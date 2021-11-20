@@ -15,5 +15,10 @@ jobs:
         with:
           ref: 'build'
       
-      - name: Test make new file
-        run: touch test
+      - name: Make and push new file
+        run: |
+          echo "xd" > test
+          cat test
+          git add .
+          git commit -c "testxd"
+          git push -f
