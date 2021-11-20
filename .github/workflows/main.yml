@@ -15,10 +15,17 @@ jobs:
         with:
           ref: 'build'
       
-      - name: Make and push new file
+      - name: Clone repo
+        run: git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ env.GITHUB_REPOSITORY }}.git /tmp/repo
+
+      - name: Make new file
         run: |
+          cd /tmp/repo
           echo "xd" > test
           cat test
+
+      - name: Push
+        run: |
           git add .
           git commit -m "testxd"
           git push -f
