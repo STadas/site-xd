@@ -24,7 +24,7 @@ jobs:
           rm -rf ./*
 
       - name: Merge main into build
-        run: git merge -s theirs --no-commit main
+        run: git merge -X theirs --no-commit main
 
       - name: Build Angular app
         run: |
