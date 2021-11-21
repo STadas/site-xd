@@ -38,11 +38,11 @@ jobs:
 
       - name: Clean up
         run: |
+          shopt -s extglob
           rm -r !(dist|CNAME)
           shopt -s dotglob
           mv dist/*/* ./
           rm -r dist
-          shopt -u dotglob
 
       - name: Push
         run: |
