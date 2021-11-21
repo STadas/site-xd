@@ -11,11 +11,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set up git config
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Fetch build branch
         run: |
           cd ${{ github.workspace }}
-          git checkout -b build
-          git reset --hard ${{ github.sha }}
+          git fetch
+          git switch build
+
+      - name: Clean build branch
+        run: |
+          shopt -s extglob dotglob
+          rm -r !(.git|.|..)
+
+      - name: Merge into build
+        run: git merge -X theirs --no-commit ${{ github.sha }} --allow-unrelated-histories
 
       - name: Build Angular app
         run: |
@@ -24,9 +37,7 @@ jobs:
 
       - name: Clean up
         run: |
-          shopt -s extglob
-          rm -r !(dist|CNAME)
-          shopt -s dotglob
+          shopt -s extglob dotglob
+          rm -r !(dist|CNAME|.git|.|..)
           mv dist/*/* ./
           rm -r dist
-          shopt -u dotglob

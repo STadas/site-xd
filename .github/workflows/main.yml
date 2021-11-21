@@ -1,6 +1,7 @@
 on:
   push:
-    branches: main
+    branches:
+      - main
 
   workflow_dispatch:
 
@@ -25,11 +26,11 @@ jobs:
 
       - name: Clean build branch
         run: |
-          shopt -s extglob
-          rm -rf ./*
+          shopt -s extglob dotglob
+          rm -r !(.git|.|..)
 
-      - name: Merge main into build
-        run: git merge -X theirs --no-commit main --allow-unrelated-histories
+      - name: Merge into build
+        run: git merge -X theirs --no-commit ${{ github.sha }} --allow-unrelated-histories
 
       - name: Build Angular app
         run: |
