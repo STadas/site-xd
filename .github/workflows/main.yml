@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment:
-      - name: angular-build
+        name: angular-build
         url: https://github.com/STadas/site-xd/tree/build
 
     steps:
