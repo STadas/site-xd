@@ -38,9 +38,8 @@ jobs:
 
       - name: Clean up
         run: |
-          shopt -s extglob
-          rm -r !(dist|CNAME)
-          shopt -s dotglob
+          shopt -s extglob dotglob
+          rm -r !(dist|CNAME|.git)
           mv dist/*/* ./
           rm -r dist
 
