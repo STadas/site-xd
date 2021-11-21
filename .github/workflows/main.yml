@@ -15,8 +15,16 @@ jobs:
       - name: Fetch build branch
         run: |
           cd ${{ github.workspace }}
-          git checkout -b build
-          git reset --hard ${{ github.sha }}
+          git fetch
+          git switch build
+
+      - name: Clean build branch
+        run: |
+          shopt -s extglob
+          rm -rf ./*
+
+      - name: Merge main into build
+        run: git merge -s theirs --no-commit main
 
       - name: Build Angular app
         run: |
@@ -25,7 +33,6 @@ jobs:
 
       - name: Clean up
         run: |
-          shopt -s extglob
           rm -r !(dist|CNAME)
           shopt -s dotglob
           mv dist/*/* ./
