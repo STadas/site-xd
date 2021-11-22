@@ -25,7 +25,7 @@ jobs:
       - name: Clean build branch
         run: |
           shopt -s extglob dotglob
-          rm -r !(.git|.|..)
+          rm -r !(.git|CNAME|.|..)
 
       - name: Merge into build
         run: git merge -X theirs --no-commit ${{ github.sha }} --allow-unrelated-histories
