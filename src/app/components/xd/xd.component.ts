@@ -11,7 +11,7 @@ export class XdComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const date = new Date();
+    const date = new Date()
     this.xd = "x" + "d".repeat(date.getDate())
   }
 
