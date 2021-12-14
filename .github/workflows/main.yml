@@ -23,7 +23,7 @@ jobs:
 
       - name: Fetch build branch
         run: |
-          cd ${{ github.workspace }}
+          cd SaitynaiFront
           git fetch
           git switch build
 
