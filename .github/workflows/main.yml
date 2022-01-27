@@ -37,7 +37,7 @@ jobs:
 
       - name: Build Angular app
         run: |
-          npm install
+          npm ci
           npm run-script build
 
       - name: Clean up
