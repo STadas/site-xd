@@ -1,2 +1,2 @@
 # sandbox thing
-[tadz.eu](https://tadz.eu)
+[xd.tadz.eu](https://xd.tadz.eu)
